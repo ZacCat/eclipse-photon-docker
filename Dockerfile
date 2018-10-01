@@ -14,11 +14,11 @@ ENV ECLIPSE_WORKSPACE=${HOME}/eclipse-workspace
 ## ----------------------------------------------------------------------------
 
 ## -- 1.) Eclipse version: oxygen, photon, etc.: -- ##
-ARG ECLIPSE_VERSION=${ECLIPSE_VERSION:-photon}
+ARG ECLIPSE_VERSION=${ECLIPSE_VERSION:-oxygen}
 ENV ECLIPSE_VERSION=${ECLIPSE_VERSION}
 
 ## -- 2.) Eclipse Type: -- ##
-ARG ECLIPSE_TYPE=${ECLIPSE_TYPE:-jee}
+ARG ECLIPSE_TYPE=${ECLIPSE_TYPE:-rcp}
 #ARG ECLIPSE_TYPE=${ECLIPSE_TYPE:-modeling}
 
 ## -- 3.) Eclipse Release: -- ##
