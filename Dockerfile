@@ -57,23 +57,23 @@ ARG ECLIPSE_DOWNLOAD_URL=${ECLIPSE_DOWNLOAD_URL:-${ECLIPSE_MIRROR_SITE_URL}/${EC
 WORKDIR /opt
 RUN sudo wget -c ${ECLIPSE_DOWNLOAD_URL}/${ECLIPSE_TAR} && \
     sudo tar xvf ${ECLIPSE_TAR} && \
-    sudo rm ${ECLIPSE_TAR} 
+    sudo rm ${ECLIPSE_TAR}
 
 #################################
 #### Install Eclipse Plugins ####
 #################################
-# ... add Eclipse plugin - installation here (see example in https://github.com/DrSnowbird/papyrus-sysml-docker)
+WORKDIR /opt/eclipse/plugins
+RUN  wget -r -np --cut-dirs=3 -nH -R "index.html*" https://update.rascal-mpl.org/stable/plugins/
 
 ##################################
 #### Set up user environments ####
 ##################################
 VOLUME ${ECLIPSE_WORKSPACE}
-VOLUME ${HOME}/.eclipse 
+VOLUME ${HOME}/.eclipse
 
 RUN mkdir -p ${HOME}/.eclipse ${ECLIPSE_WORKSPACE} &&\
     sudo chown -R ${USER_NAME}:${USER_NAME} ${ECLIPSE_WORKSPACE} ${HOME}/.eclipse
-    
+
 USER ${USER_NAME}
 WORKDIR ${ECLIPSE_WORKSPACE}
 CMD ["/opt/eclipse/eclipse"]
-
